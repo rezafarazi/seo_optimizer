@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    مدیریت سئو
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+  <link th:href="@{assets/css/material-dashboard.css?v=2.1.2}" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link th:href="@{assets/demo/demo.css}" rel="stylesheet" />
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+
+<div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+          جدول بهینه سازی سئو
+        </a></div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/Dashboard">
+              <i class="material-icons">dashboard</i>
+              <p>داشبورد</p>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/AllUsers">
+              <i class="material-icons">person</i>
+              <p>کاربران</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/NewSeo">
+              <i class="material-icons">content_paste</i>
+              <p>سئو جدید</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/AllSeo">
+              <i class="material-icons">bubble_chart</i>
+              <p>همه سئوها</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/NewQuestion">
+              <i class="material-icons">description</i>
+              <p>پرسش های جدید</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/UpdateQuestion">
+              <i class="material-icons">system_update_alt</i>
+              <p>ویرایش پرسش ها</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="https://seo.7ho.st/fa/tools">
+              <i class="material-icons">web</i>
+              <p>ابزار الکسا</p>
+            </a>
+          </li>
+          <li class="nav-item active-pro ">
+            <a class="nav-link" href="/Exit">
+              <i class="material-icons">unarchive</i>
+              <p>خروج</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:;">کاربران</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+
+
+      <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+
+            <!--َUser Profile-->
+            <div class="col-md-6" id="categories_is_empty">
+              <div class="card card-stats castum-form-divition">
+
+                <p style="text-align: center;">پروفایل</p>
+
+                <!--Profile Image Start-->
+                <div>
+                  <img th:src="@{assets/img/account.png}" style="width: 120px;display: block;margin: 0 auto;"/>
+                </div>
+                <!--Profile Image End-->
+
+                <!--User Data Start-->
+                <table class="table">
+                  <tr>
+                    <td>نام</td>
+                    <td th:text="${name}"/>
+                  </tr>
+                  <tr>
+                    <td>نام خانوادگی</td>
+                    <td th:text="${family}"/>
+                  </tr>
+                  <tr>
+                    <td>نام کاربری</td>
+                    <td th:text="${username}"/>
+                  </tr>
+                  <tr>
+                    <td>رمز عبور</td>
+                    <td>**********</td>
+                  </tr>
+                </table>
+                <!--User Data End-->
+
+                <button onclick="onclick_change_password_event()" class="btn btn-primary pull-right">تغییر رمز عبور</button>
+
+              </div>
+            </div>
+            <!--َUser End-->
+
+
+
+            <!--New User Start-->
+            <div class="col-md-6" id="categories_is_empty">
+              <div class="card card-stats castum-form-divition">
+
+                <p style="text-align: center;">کاربر جدید</p>
+
+                <!--User Data Start-->
+                <table>
+                  <tr>
+                    <td style="padding: 14px;"><input id="new_user_name_namebox" class="form-control" type="text" placeholder="نام" style="text-align: center;"></td>
+                    <td style="padding: 14px;"><input id="new_user_family_namebox" class="form-control" type="text" placeholder="نام خانوادگی" style="text-align: center;"></td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 14px;"><input id="new_user_username_namebox" class="form-control" type="text" placeholder="نام کاربری" style="text-align: center;"></td>
+                    <td style="padding: 14px;"><input id="new_user_password_namebox" class="form-control" type="password" placeholder="رمزعبور" style="text-align: center;"></td>
+                  </tr>
+                </table>
+                <!--User Data End-->
+
+                <button class="btn btn-primary pull-right" onclick="onclick_new_user_event()">تایید</button>
+
+                <!--Alert-->
+                <div id="alertbox">
+
+                </div>
+                <!--Alert-->
+                
+
+              </div>
+            </div>
+            <!--New User End-->
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <!--Change Password Dialog Start-->
+  <div id="dialog_popup">
+    <div id="dialog_popup_context">
+      <input id="new_profile_user_password" class="form-control" type="password" placeholder="رمزعبور جدید" style="text-align: center;">
+      <button onclick="onclick_changepassword_btn_event()" style="width: 100%;" class="btn btn-primary pull-right">تایید</button>
+    </div>
+  </div>
+  <!--Change Password Dialog End-->
+
+
+
+
+
+
+  <style>
+    .table th, .table td
+    {
+      text-align: center !important;
+      padding: 15px !important;
+    }
+    
+    #dialog_popup
+    {
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #66666666;
+      z-index: 999999999;
+      justify-content: center;
+      align-items: center;
+      display: none;
+    }
+
+    #dialog_popup_context
+    {
+      width: 313px;
+      border-radius: 10px;
+      background: #FFFFFF;
+      padding: 10px;
+    }
+  </style>
+
+
+  <script>
+    
+    function onclick_new_user_event()
+    {
+      var name=window.document.getElementById("new_user_name_namebox");
+      var family=window.document.getElementById("new_user_family_namebox");
+      var username=window.document.getElementById("new_user_username_namebox");
+      var password=window.document.getElementById("new_user_password_namebox");
+      var xml=new XMLHttpRequest();
+      xml.onreadystatechange=function(){
+        if(xml.status==200&&xml.readyState==4)
+        {
+            name.value="";
+            family.value="";
+            username.value="";
+            password.value="";
+
+            var js=JSON.parse(xml.responseText);
+            if(js.status=="success")
+            {
+              var alertbox=window.document.getElementById("alertbox");
+              alertbox.innerHTML="<div class=\"alert alert-success\" role=\"alert\" style=\"text-align:center;\">عملیات با موفقیت انجام شد</div>";
+            }
+            else
+            {
+              var alertbox=window.document.getElementById("alertbox");
+              alertbox.innerHTML="<div class=\"alert alert-danger\" role=\"alert\" style=\"text-align:center;\">نام کاربری تکراری می باشد</div>";
+            }
+        }
+      };
+      xml.open("GET","http://localhost:8080/Api/v1/InsertUser"+"?name="+name.value+"&family="+family.value+"&username="+username.value+"&password="+password.value);
+      xml.send();
+    }
+
+
+    function onclick_change_password_event()
+    {
+      var box=window.document.getElementById("dialog_popup");
+      box.style.display="flex";
+    }
+
+
+    function onclick_changepassword_btn_event()
+    {
+      var change_password=window.document.getElementById("new_profile_user_password");
+
+      if(change_password.value!="")
+      {
+        chnage_password_ajax(change_password.value.toString());
+      }
+
+      var box=window.document.getElementById("dialog_popup");
+      box.style.display="none";
+    }
+
+
+    function chnage_password_ajax(passwordss)
+    {
+      var xml=new XMLHttpRequest();
+      xml.onreadystatechange=function(){
+          window.location.reload();
+      };
+      xml.open("GET","http://localhost:8080/Api/v1/UpdateUserPassword?password="+passwordss);
+      xml.send();
+    }
+
+
+  </script>
+
+  <!--   Core JS Files   -->
+  <script th:src="@{assets/js/core/jquery.min.js}"></script>
+  <script th:src="@{assets/js/core/popper.min.js}"></script>
+  <script th:src="@{assets/js/core/bootstrap-material-design.min.js}"></script>
+  <script th:src="@{assets/js/plugins/perfect-scrollbar.jquery.min.js}"></script>
+  <!-- Plugin for the momentJs  -->
+  <script th:src="@{assets/js/plugins/moment.min.js}"></script>
+  <!--  Plugin for Sweet Alert -->
+  <script th:src="@{assets/js/plugins/sweetalert2.js}"></script>
+  <!-- Forms Validations Plugin -->
+  <script th:src="@{assets/js/plugins/jquery.validate.min.js}"></script>
+  <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+  <script th:src="@{assets/js/plugins/jquery.bootstrap-wizard.js}"></script>
+  <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+  <script th:src="@{assets/js/plugins/bootstrap-selectpicker.js}"></script>
+  <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+  <script th:src="@{assets/js/plugins/bootstrap-datetimepicker.min.js}"></script>
+  <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+  <script th:src="@{assets/js/plugins/jquery.dataTables.min.js}"></script>
+  <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+  <script th:src="@{assets/js/plugins/bootstrap-tagsinput.js}"></script>
+  <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+  <script th:src="@{assets/js/plugins/jasny-bootstrap.min.js}"></script>
+  <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+  <script th:src="@{assets/js/plugins/fullcalendar.min.js}"></script>
+  <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+  <script th:src="@{assets/js/plugins/jquery-jvectormap.js}"></script>
+  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script th:src="@{assets/js/plugins/nouislider.min.js}"></script>
+  <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+  <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js}"></script>
+  <!-- Library for adding dinamically elements -->
+  <script th:src="@{assets/js/plugins/arrive.min.js}"></script>
+  <!--  Google Maps Plugin    -->
+  <script th:src="@{https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE}"></script>
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->  
+  <script>
+    $(document).ready(function() {
+      $().ready(function() {
+        $sidebar = $('.sidebar');
+
+        $sidebar_img_container = $sidebar.find('.sidebar-background');
+
+        $full_page = $('.full-page');
+
+        $sidebar_responsive = $('body > .navbar-collapse');
+
+        window_width = $(window).width();
+
+        fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+        if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
+          if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
+            $('.fixed-plugin .dropdown').addClass('open');
+          }
+
+        }
+
+        $('.fixed-plugin a').click(function(event) {
+          // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+          if ($(this).hasClass('switch-trigger')) {
+            if (event.stopPropagation) {
+              event.stopPropagation();
+            } else if (window.event) {
+              window.event.cancelBubble = true;
+            }
+          }
+        });
+
+        $('.fixed-plugin .active-color span').click(function() {
+          $full_page_background = $('.full-page-background');
+
+          $(this).siblings().removeClass('active');
+          $(this).addClass('active');
+
+          var new_color = $(this).data('color');
+
+          if ($sidebar.length != 0) {
+            $sidebar.attr('data-color', new_color);
+          }
+
+          if ($full_page.length != 0) {
+            $full_page.attr('filter-color', new_color);
+          }
+
+          if ($sidebar_responsive.length != 0) {
+            $sidebar_responsive.attr('data-color', new_color);
+          }
+        });
+
+        $('.fixed-plugin .background-color .badge').click(function() {
+          $(this).siblings().removeClass('active');
+          $(this).addClass('active');
+
+          var new_color = $(this).data('background-color');
+
+          if ($sidebar.length != 0) {
+            $sidebar.attr('data-background-color', new_color);
+          }
+        });
+
+        $('.fixed-plugin .img-holder').click(function() {
+          $full_page_background = $('.full-page-background');
+
+          $(this).parent('li').siblings().removeClass('active');
+          $(this).parent('li').addClass('active');
+
+
+          var new_image = $(this).find("img").attr('src');
+
+          if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+            $sidebar_img_container.fadeOut('fast', function() {
+              $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+              $sidebar_img_container.fadeIn('fast');
+            });
+          }
+
+          if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+            var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+            $full_page_background.fadeOut('fast', function() {
+              $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+              $full_page_background.fadeIn('fast');
+            });
+          }
+
+          if ($('.switch-sidebar-image input:checked').length == 0) {
+            var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
+            var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+            $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+            $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+          }
+
+          if ($sidebar_responsive.length != 0) {
+            $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
+          }
+        });
+
+        $('.switch-sidebar-image input').change(function() {
+          $full_page_background = $('.full-page-background');
+
+          $input = $(this);
+
+          if ($input.is(':checked')) {
+            if ($sidebar_img_container.length != 0) {
+              $sidebar_img_container.fadeIn('fast');
+              $sidebar.attr('data-image', '#');
+            }
+
+            if ($full_page_background.length != 0) {
+              $full_page_background.fadeIn('fast');
+              $full_page.attr('data-image', '#');
+            }
+
+            background_image = true;
+          } else {
+            if ($sidebar_img_container.length != 0) {
+              $sidebar.removeAttr('data-image');
+              $sidebar_img_container.fadeOut('fast');
+            }
+
+            if ($full_page_background.length != 0) {
+              $full_page.removeAttr('data-image', '#');
+              $full_page_background.fadeOut('fast');
+            }
+
+            background_image = false;
+          }
+        });
+
+        $('.switch-sidebar-mini input').change(function() {
+          $body = $('body');
+
+          $input = $(this);
+
+          if (md.misc.sidebar_mini_active == true) {
+            $('body').removeClass('sidebar-mini');
+            md.misc.sidebar_mini_active = false;
+
+            $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+
+          } else {
+
+            $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+
+            setTimeout(function() {
+              $('body').addClass('sidebar-mini');
+
+              md.misc.sidebar_mini_active = true;
+            }, 300);
+          }
+
+          // we simulate the window Resize so the charts will get updated in realtime.
+          var simulateWindowResize = setInterval(function() {
+            window.dispatchEvent(new Event('resize'));
+          }, 180);
+
+          // we stop the simulation of Window Resize after the animations are completed
+          setTimeout(function() {
+            clearInterval(simulateWindowResize);
+          }, 1000);
+
+        });
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      md.initDashboardPageCharts();
+
+    });
+  </script>
+</body>
+
+</html>

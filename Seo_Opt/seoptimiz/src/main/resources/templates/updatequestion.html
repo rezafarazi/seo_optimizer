@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    مدیریت سئو
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+  <link th:href="@{assets/css/material-dashboard.css?v=2.1.2}" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link th:href="@{assets/demo/demo.css}" rel="stylesheet" />
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+
+<div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+          جدول بهینه سازی سئو
+        </a></div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/Dashboard">
+              <i class="material-icons">dashboard</i>
+              <p>داشبورد</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/AllUsers">
+              <i class="material-icons">person</i>
+              <p>کاربران</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/NewSeo">
+              <i class="material-icons">content_paste</i>
+              <p>سئو جدید</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/AllSeo">
+              <i class="material-icons">bubble_chart</i>
+              <p>همه سئوها</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="/NewQuestion">
+              <i class="material-icons">description</i>
+              <p>پرسش های جدید</p>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/UpdateQuestion">
+              <i class="material-icons">system_update_alt</i>
+              <p>ویرایش پرسش ها</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="https://seo.7ho.st/fa/tools">
+              <i class="material-icons">web</i>
+              <p>ابزار الکسا</p>
+            </a>
+          </li>
+          <li class="nav-item active-pro ">
+            <a class="nav-link" href="/Exit">
+              <i class="material-icons">unarchive</i>
+              <p>خروج</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:;">ویرایش پرسش ها</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+
+
+      <div class="content">
+        <div class="container-fluid">
+          
+          
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card card-stats castum-form-divition">
+                
+                <select class="form-control" onchange="ComboSelect_Option_onchnage_event(this)" id="question_category_combobox">
+                </select>
+
+                <style>
+                  select
+                  {
+                    padding: 5px 15px;
+                    border-radius: 5px;
+                    border: none;
+                    outline: none;
+                  }
+                </style>
+
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card card-stats castum-form-divition">
+                
+                <!--Ajax From Divition Start-->
+                <div class="ajax-from">
+
+                  <!--Frist Row Start-->
+                  <textarea id="questions_feild" style="display: none;">[]</textarea>
+                  <input class="form-control" type="text" id="question_id" style="display: none;"/>
+                  <input class="form-control" type="text" id="category_name" style="width: 100%;" placeholder="دسته بندی"/>
+                  <!--Frist Row End-->
+
+                  <!--Secend Row Start-->
+                  <input class="form-control" type="text" id="question_value" style="width: 100%;" placeholder="سوال جدید"/>
+                  <button class="btn btn-primary pull-right" onclick="new_question_button_click_event(this)" style="width: 14%;">درج</button>
+                  <!--Secend Row End-->
+
+                  <br>
+
+                  <!--Table Start-->
+                  <table style="width: 100%;" id="table_questions">
+                  </table>
+                  <!--Table End-->
+
+
+
+                  <!--Submit Button Start-->
+                  <button class="btn btn-primary pull-right" onclick="onclick_done_btn_event(this)" style="width: 100%;margin-top: 25px;">تایید</button>
+                  <!--Submit Button End-->
+
+
+
+                  <br>
+                  <br>
+                  <!--Alert-->
+                  <div id="alertbox" style="margin-top: 50px;">
+
+                  </div>
+                  <!--Alert-->
+
+
+                </div>
+                <!--Ajax From Divition End-->
+
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <!--Ajax Start-->
+  <script>
+
+    //Global Variables Start
+    var json_question_data="[]";
+    //Global Variables End
+
+
+    var xmr=new XMLHttpRequest();
+      xmr.onreadystatechange=function(){
+        if (this.readyState == 4 && this.status == 200) 
+        {
+          Fill_Combobox(xmr.responseText);
+        }
+      };
+      xmr.open("GET","http://localhost:8080/Api/v1/QuestionCategories");
+      xmr.send();
+
+    window.addEventListener("load",function(e){
+
+      
+
+    });
+
+
+
+    function Fill_Combobox(js_value)
+    {
+      json_question_data=js_value;
+      var Combobox=window.document.getElementById("question_category_combobox");
+      jsonary=JSON.parse(js_value);
+      for(var i=0;i<jsonary.length;i++)
+      {
+        Combobox.innerHTML+="<option value=\""+jsonary[i].id+"\">"+jsonary[i].category+"</option>";
+      }
+    }
+
+
+    function ComboSelect_Option_onchnage_event(e)
+    {
+      var Combobox=window.document.getElementById("question_category_combobox");
+      fill_data_filds(Combobox.value);
+    }
+
+
+
+    function fill_data_filds(id)
+    {
+      var json_input=window.document.getElementById("questions_feild");
+      var category_text=window.document.getElementById("category_name");
+      var id_text=window.document.getElementById("question_id");
+
+      jsonary=JSON.parse(json_question_data); 
+      for(var i=0;i<jsonary.length;i++)
+      {
+        if(jsonary[i].id==id)
+        {
+          id_text.value=jsonary[i].id;
+          category_text.value=jsonary[i].category;
+          json_input.value=jsonary[i].questions;
+          break;
+        }
+      }
+      GET_FILL_QUESTION_JSON_TABLE();
+    }
+
+
+
+    function new_question_button_click_event(e)
+    {
+      var new_question_value=window.document.getElementById("question_value");
+      var json_input=window.document.getElementById("questions_feild");
+      var json_array=JSON.parse(json_input.value.toString());      
+      var jsonn={question:new_question_value.value.toString()};
+      json_array.push(jsonn);
+      json_input.value=JSON.stringify(json_array);
+      new_question_value.value="";
+      GET_FILL_QUESTION_JSON_TABLE();
+    }
+
+
+
+    function GET_FILL_QUESTION_JSON_TABLE()
+    {
+      var json_input=window.document.getElementById("questions_feild");
+      var json_array=JSON.parse(json_input.value);
+      var tbl=window.document.getElementById("table_questions");
+
+      tbl.innerHTML="";
+      json_array.forEach(element => {
+        tbl.innerHTML+="<tr><th>"+element.question+"</th><th><a class=\"table_delete_btn\" onclick='DELETE_QUESTION(this,\""+element.question+"\")'>حذف</a></th></tr>";
+      });
+
+    }
+
+
+    function DELETE_QUESTION(e,value)
+    {
+      var json_input=window.document.getElementById("questions_feild");
+      var json_array=JSON.parse(json_input.value);
+      var tbl=window.document.getElementById("table_questions");
+
+      for(var i=0;i<json_array.length;i++)
+      {
+        if(json_array[i].question==value)
+        {
+          delete json_array[i];
+        }
+      }
+
+      var json_str=JSON.stringify(json_array);
+      json_str=json_str.replace("null,","");
+      json_str=json_str.replace(",null","");
+      json_str=json_str.replace("null","");
+
+      json_input.value=json_str;
+      GET_FILL_QUESTION_JSON_TABLE();
+    }
+
+
+    function onclick_done_btn_event(e)
+    {
+      var category_text=window.document.getElementById("category_name");
+      var json_text=window.document.getElementById("questions_feild");      
+      var json_val=btoa(json_text.value.toString());
+      var xlr=new XMLHttpRequest();
+      var questionbox_id=window.document.getElementById("question_id");
+      xlr.onreadystatechange=function(){
+        if (this.readyState == 4 && this.status == 200) 
+        {
+          category_text.value="";
+          var tbl=window.document.getElementById("table_questions");
+          tbl.innerHTML="";
+          var alertbox=window.document.getElementById("alertbox");
+          alertbox.innerHTML="<div class=\"alert alert-success\" role=\"alert\" style=\"text-align:center;\">عملیات با موفقیت انجام شد</div>";
+
+          window.location.reload();
+
+        }
+      };
+      xlr.open("GET","http://localhost:8080/Api/v1/UpdateQuestion?category="+category_text.value+"&id="+questionbox_id.value+"&json="+json_val,true);
+      xlr.send();
+
+    }
+
+
+  </script>
+  <!--Ajax End-->
+
+  <!--   Core JS Files   -->
+  <script th:src="@{assets/js/core/jquery.min.js}"></script>
+  <script th:src="@{assets/js/core/popper.min.js}"></script>
+  <script th:src="@{assets/js/core/bootstrap-material-design.min.js}"></script>
+  <script th:src="@{assets/js/plugins/perfect-scrollbar.jquery.min.js}"></script>
+  <!-- Plugin for the momentJs  -->
+  <script th:src="@{assets/js/plugins/moment.min.js}"></script>
+  <!--  Plugin for Sweet Alert -->
+  <script th:src="@{assets/js/plugins/sweetalert2.js}"></script>
+  <!-- Forms Validations Plugin -->
+  <script th:src="@{assets/js/plugins/jquery.validate.min.js}"></script>
+  <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+  <script th:src="@{assets/js/plugins/jquery.bootstrap-wizard.js}"></script>
+  <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+  <script th:src="@{assets/js/plugins/bootstrap-selectpicker.js}"></script>
+  <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+  <script th:src="@{assets/js/plugins/bootstrap-datetimepicker.min.js}"></script>
+  <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+  <script th:src="@{assets/js/plugins/jquery.dataTables.min.js}"></script>
+  <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+  <script th:src="@{assets/js/plugins/bootstrap-tagsinput.js}"></script>
+  <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+  <script th:src="@{assets/js/plugins/jasny-bootstrap.min.js}"></script>
+  <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+  <script th:src="@{assets/js/plugins/fullcalendar.min.js}"></script>
+  <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+  <script th:src="@{assets/js/plugins/jquery-jvectormap.js}"></script>
+  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script th:src="@{assets/js/plugins/nouislider.min.js}"></script>
+  <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+  <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js}"></script>
+  <!-- Library for adding dinamically elements -->
+  <script th:src="@{assets/js/plugins/arrive.min.js}"></script>
+  <!--  Google Maps Plugin    -->
+  <script th:src="@{https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE}"></script>
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->  
+  <script>
+    $(document).ready(function() {
+      $().ready(function() {
+        $sidebar = $('.sidebar');
+
+        $sidebar_img_container = $sidebar.find('.sidebar-background');
+
+        $full_page = $('.full-page');
+
+        $sidebar_responsive = $('body > .navbar-collapse');
+
+        window_width = $(window).width();
+
+        fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+        if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
+          if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
+            $('.fixed-plugin .dropdown').addClass('open');
+          }
+
+        }
+
+        $('.fixed-plugin a').click(function(event) {
+          // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+          if ($(this).hasClass('switch-trigger')) {
+            if (event.stopPropagation) {
+              event.stopPropagation();
+            } else if (window.event) {
+              window.event.cancelBubble = true;
+            }
+          }
+        });
+
+        $('.fixed-plugin .active-color span').click(function() {
+          $full_page_background = $('.full-page-background');
+
+          $(this).siblings().removeClass('active');
+          $(this).addClass('active');
+
+          var new_color = $(this).data('color');
+
+          if ($sidebar.length != 0) {
+            $sidebar.attr('data-color', new_color);
+          }
+
+          if ($full_page.length != 0) {
+            $full_page.attr('filter-color', new_color);
+          }
+
+          if ($sidebar_responsive.length != 0) {
+            $sidebar_responsive.attr('data-color', new_color);
+          }
+        });
+
+        $('.fixed-plugin .background-color .badge').click(function() {
+          $(this).siblings().removeClass('active');
+          $(this).addClass('active');
+
+          var new_color = $(this).data('background-color');
+
+          if ($sidebar.length != 0) {
+            $sidebar.attr('data-background-color', new_color);
+          }
+        });
+
+        $('.fixed-plugin .img-holder').click(function() {
+          $full_page_background = $('.full-page-background');
+
+          $(this).parent('li').siblings().removeClass('active');
+          $(this).parent('li').addClass('active');
+
+
+          var new_image = $(this).find("img").attr('src');
+
+          if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+            $sidebar_img_container.fadeOut('fast', function() {
+              $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+              $sidebar_img_container.fadeIn('fast');
+            });
+          }
+
+          if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+            var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+            $full_page_background.fadeOut('fast', function() {
+              $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+              $full_page_background.fadeIn('fast');
+            });
+          }
+
+          if ($('.switch-sidebar-image input:checked').length == 0) {
+            var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
+            var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+            $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+            $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+          }
+
+          if ($sidebar_responsive.length != 0) {
+            $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
+          }
+        });
+
+        $('.switch-sidebar-image input').change(function() {
+          $full_page_background = $('.full-page-background');
+
+          $input = $(this);
+
+          if ($input.is(':checked')) {
+            if ($sidebar_img_container.length != 0) {
+              $sidebar_img_container.fadeIn('fast');
+              $sidebar.attr('data-image', '#');
+            }
+
+            if ($full_page_background.length != 0) {
+              $full_page_background.fadeIn('fast');
+              $full_page.attr('data-image', '#');
+            }
+
+            background_image = true;
+          } else {
+            if ($sidebar_img_container.length != 0) {
+              $sidebar.removeAttr('data-image');
+              $sidebar_img_container.fadeOut('fast');
+            }
+
+            if ($full_page_background.length != 0) {
+              $full_page.removeAttr('data-image', '#');
+              $full_page_background.fadeOut('fast');
+            }
+
+            background_image = false;
+          }
+        });
+
+        $('.switch-sidebar-mini input').change(function() {
+          $body = $('body');
+
+          $input = $(this);
+
+          if (md.misc.sidebar_mini_active == true) {
+            $('body').removeClass('sidebar-mini');
+            md.misc.sidebar_mini_active = false;
+
+            $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+
+          } else {
+
+            $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+
+            setTimeout(function() {
+              $('body').addClass('sidebar-mini');
+
+              md.misc.sidebar_mini_active = true;
+            }, 300);
+          }
+
+          // we simulate the window Resize so the charts will get updated in realtime.
+          var simulateWindowResize = setInterval(function() {
+            window.dispatchEvent(new Event('resize'));
+          }, 180);
+
+          // we stop the simulation of Window Resize after the animations are completed
+          setTimeout(function() {
+            clearInterval(simulateWindowResize);
+          }, 1000);
+
+        });
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      md.initDashboardPageCharts();
+
+    });
+  </script>
+</body>
+
+</html>
